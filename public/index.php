@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestionnaire de Tâches</title>
     <link href="css/style.css" rel="stylesheet">
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/44720d3ccc.js" crossorigin="anonymous"></script> 
 </head>
@@ -41,3 +42,30 @@
     </footer>
 </body>
 </html>
+
+<?php 
+
+require '../src/functions.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['username'])) {
+        $username = htmlspecialchars($_POST['username']);
+        $users = json_decode(file_get_contents('data/users.json'), true); // Adjusted path
+        $userExists = false;
+        $confirm = false;
+        foreach ($users as $user) {
+            if ($user['username'] === $username) {
+                $userExists = true;
+
+                break;
+            }
+        }
+
+        if ($userExists) {
+            redirect('task-index.php');
+            exit();
+        } else {
+            echo "<div class='alert alert-danger'>Nom d'utilisateur incorrect</div>";
+        }
+    }
+}
+?>
