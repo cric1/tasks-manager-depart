@@ -1,0 +1,86 @@
+[
+    {
+        "title": "Nager \u00e0 la piscine",
+        "category": "Sport",
+        "date": "2024-07-28",
+        "description": "Nager 30 minutes \u00e0 la piscine",
+        "status": "Termin\u00e9"
+    },
+    {
+        "title": "Apprendre une nouvelle langue",
+        "category": "Personnel",
+        "date": "2024-07-29",
+        "description": "Commencer \u00e0 apprendre le japonais",
+        "status": "En Cours"
+    },
+    {
+        "title": "Nettoyer le garage",
+        "category": "Maison",
+        "date": "2024-07-30",
+        "description": "Ranger et nettoyer le garage",
+        "status": "Termin\u00e9"
+    },
+    {
+        "title": "Planifier un voyage",
+        "category": "Travail",
+        "date": "2024-08-01",
+        "description": "Organiser le voyage d'affaires",
+        "status": "\u00c0 D\u00e9buter"
+    },
+    {
+        "title": "Jouer au tennis",
+        "category": "Sport",
+        "date": "2024-08-02",
+        "description": "Faire un match de tennis avec un ami",
+        "status": "\u00c0 D\u00e9buter"
+    },
+    {
+        "title": "Aller au cin\u00e9ma",
+        "category": "Personnel",
+        "date": "2024-08-03",
+        "description": "Voir le dernier film au cin\u00e9ma",
+        "status": "En Cours"
+    },
+    {
+        "title": "Laver les vitres",
+        "category": "Maison",
+        "date": "2024-08-04",
+        "description": "Nettoyer toutes les fen\u00eatres de la maison",
+        "status": "Termin\u00e9"
+    },
+    {
+        "title": "R\u00e9diger une proposition",
+        "category": "Travail",
+        "date": "2024-08-05",
+        "description": "\u00c9crire une proposition pour un nouveau projet",
+        "status": "En Cours"
+    },
+    {
+        "title": "Faire du ski",
+        "category": "Sport",
+        "date": "2024-08-06",
+        "description": "Passer la journ\u00e9e \u00e0 la montagne et faire du ski",
+        "status": "Termin\u00e9"
+    },
+    {
+        "title": "Jardiner",
+        "category": "Personnel",
+        "date": "2024-08-07",
+        "description": "Planter des fleurs et des l\u00e9gumes",
+        "status": "\u00c0 D\u00e9buter"
+    },
+    {
+        "title": "Faire une analyse de march\u00e9",
+        "category": "Travail",
+        "date": "2024-08-09",
+        "description": "Analyser le march\u00e9 pour la nouvelle campagne",
+        "status": "Termin\u00e9"
+    },
+    {
+        "title": "Faire de l'escalade",
+        "category": "Sport",
+        "date": "2024-08-10",
+        "description": "Grimper en salle d'escalade",
+        "status": "\u00c0 D\u00e9buter"
+    }
+]

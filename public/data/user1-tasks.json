@@ -1,0 +1,93 @@
+{
+    "1": {
+        "title": "Compl\u00e8ter projet TP# 1",
+        "category": "Travail",
+        "date": "2024-07-10",
+        "description": "Compl\u00e9ter le projet sur PHP",
+        "status": "\u00c0 D\u00e9buter"
+    },
+    "2": {
+        "title": "Lire un livre",
+        "category": "Personnel",
+        "date": "2024-07-11",
+        "description": "Prendre un temps pour moi et lire un bon livre",
+        "status": "En Cours"
+    },
+    "3": {
+        "title": "Faire les courses",
+        "category": "Maison",
+        "date": "2024-07-12",
+        "description": "Acheter des provisions pour la semaine",
+        "status": "En Cours"
+    },
+    "4": {
+        "title": "Pr\u00e9parer la r\u00e9union",
+        "category": "Travail",
+        "date": "2024-07-13",
+        "description": "Pr\u00e9parer les documents pour la r\u00e9union de lundi",
+        "status": "\u00c0 D\u00e9buter"
+    },
+    "5": {
+        "title": "Nettoyer la maison",
+        "category": "Maison",
+        "date": "2024-07-14",
+        "description": "Faire le m\u00e9nage complet de la maison",
+        "status": "En Cours"
+    },
+    "6": {
+        "title": "Aller courir",
+        "category": "Sport",
+        "date": "2024-07-15",
+        "description": "Faire un jogging de 5 km",
+        "status": "Termin\u00e9"
+    },
+    "7": {
+        "title": "R\u00e9diger le rapport",
+        "category": "Travail",
+        "date": "2024-07-16",
+        "description": "\u00c9crire le rapport trimestriel",
+        "status": "Termin\u00e9"
+    },
+    "8": {
+        "title": "Cuisiner un nouveau plat",
+        "category": "Personnel",
+        "date": "2024-07-17",
+        "description": "Essayer une nouvelle recette",
+        "status": "\u00c0 D\u00e9buter"
+    },
+    "9": {
+        "title": "Tondre la pelouse",
+        "category": "Maison",
+        "date": "2024-07-18",
+        "description": "Tondre la pelouse du jardin",
+        "status": "Termin\u00e9"
+    },
+    "10": {
+        "title": "R\u00e9viser les cours",
+        "category": "Travail",
+        "date": "2024-07-19",
+        "description": "R\u00e9viser pour les examens de fin de semestre",
+        "status": "\u00c0 D\u00e9buter"
+    },
+    "11": {
+        "title": "Faire du v\u00e9lo",
+        "category": "Sport",
+        "date": "2024-07-20",
+        "description": "Faire une balade \u00e0 v\u00e9lo de 20 km",
+        "status": "En Cours"
+    },
+    "12": {
+        "title": "Organiser une soir\u00e9e",
+        "category": "Personnel",
+        "date": "2024-07-21",
+        "description": "Inviter des amis pour une soir\u00e9e",
+        "status": "Termin\u00e9"
+    },
+    "13": {
+        "title": "Peindre la chambre",
+        "category": "Maison",
+        "date": "2024-07-22",
+        "description": "Repeindre les murs de la chambre",
+        "status": "Termin\u00e9"
+    }
+}
