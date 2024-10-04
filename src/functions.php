@@ -6,7 +6,7 @@ function redirect($url) {
 }
 
 
-function readFromFile(string $filename): array {
+function readFromFile(string $filename) : array {
     
 }
 
@@ -26,6 +26,6 @@ function deleteTask(string $filename, int $index): void {
     
 }
 
-function renderOptions(string $file, string $itemSelected = ""):string {
+function renderOptions(string $file, string $itemSelected = "") : string {
    
 }
