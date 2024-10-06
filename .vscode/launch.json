@@ -10,7 +10,7 @@
             "request": "launch",
             "runtimeArgs": [
                 "-S",
-                "localhost:8080/php/Tp1/tasks-manager-depart/public/task-index.php",
+                "localhost:8080/php/Tp1/tasks-manager-depart/public/index.php",
                 "-t",
                 "."
             ],

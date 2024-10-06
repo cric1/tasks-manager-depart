@@ -46,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($userExists) {
-           redirect('task-index.php');
-            $_SESSION['username'] = $username;
-            var_dump($_SESSION['username']);
-            exit();
+           $_SESSION['username'] = $username;
+           redirect('task-index.php'); 
+           var_dump($_SESSION['username']);
+           exit();
         } else {
             echo "<div class='alert alert-danger'>Nom d'utilisateur incorrect</div>";
         }
