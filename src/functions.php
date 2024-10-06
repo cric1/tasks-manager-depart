@@ -7,7 +7,12 @@ function redirect($url) {
 
 
 function readFromFile(string $filename) : array {
-    
+    if(file_exists($filename)) {
+        $file = file_get_contents($filename);
+        $decodedFile = json_decode($file, true);
+        return $decodedFile;
+    }
+    return [];
 }
 
 function writeToFile(string $filename, array $data): void {
