@@ -70,8 +70,8 @@
                 </form>
 
                 <!-- TODO : Ajouter une tâche -->
-                <form action="" method="POST" class="mb-2">                    
-                
+                <form action="" method="POST" class="mb-2">
+          
                 <!-- ****** -->
                     <button class="btn btn-success" type="submit">Ajouter une tâche</button>
                      <?php  if ($_SERVER['REQUEST_METHOD'] === 'POST') {

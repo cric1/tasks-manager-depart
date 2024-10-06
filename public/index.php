@@ -32,6 +32,7 @@
 <?php 
 
 require '../src/functions.php';
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['username'])) {
         $username = htmlspecialchars($_POST['username']);
@@ -40,16 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($users as $user) {
             if ($user['username'] === $username) {
                 $userExists = true;
-
                 break;
             }
         }
 
         if ($userExists) {
-            redirect('task-index.php');
+           redirect('task-index.php');
+            $_SESSION['username'] = $username;
+            var_dump($_SESSION['username']);
             exit();
         } else {
-
             echo "<div class='alert alert-danger'>Nom d'utilisateur incorrect</div>";
         }
     }
