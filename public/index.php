@@ -4,7 +4,15 @@
 <?php require "../views/head.php"?>
 
 <body>
-    <?php require "../views/header.php"?>    
+<header class="bg-primary text-white py-3">
+    <div class="container header-content">
+        <div></div> <!-- Empty div to help center the title -->
+        <h1 class="header-title mb-0">
+            <i class="fa-solid fa-list-check"></i> Gestionnaire de Tâches
+        </h1>
+        
+    </div>
+</header>
 
     <div class="container mt-4">
         <div class="row justify-content-center">
@@ -46,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($userExists) {
-           redirect('task-index.php');
-            $_SESSION['username'] = $username;
-            var_dump($_SESSION['username']);
-            exit();
+           $_SESSION['username'] = $username;
+           redirect('task-index.php'); 
+           var_dump($_SESSION['username']);
+           exit();
         } else {
             echo "<div class='alert alert-danger'>Nom d'utilisateur incorrect</div>";
         }

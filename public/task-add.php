@@ -1,45 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php require "../views/head.php" ?>
+<?php require "../views/head.php"; ?>
 
 <body>
-    <?php require "../views/header.php" ?>
-    <?php require "../views/body.php" ?>
-    <?php
-    require '../src/functions.php';
-    session_start();
+    <?php require "../views/header.php"; ?>
+    <?php require '../src/functions.php';
     
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['title']) && isset($_GET['category']) && isset($_GET['date']) && isset($_GET['status']) && isset($_GET['description'])) {  
+    //message au prof: j'ai ajouté session_start() ici pour que la variable de session et donc username soit accessible dans le fichier.
+    //je pense pas quon a vu ca en classe mais je ne trouve pas une autre solution
+    
+    session_start();    
+    $erreurs = [];
+    $formSubmitted = false; 
+    $title = $category = $date = $status = $description = '';
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
+        $formSubmitted = true;
+
+        if (isset($_GET['title']) && !empty($_GET['title'])) {
+            $title = htmlspecialchars($_GET['title']);
+        } else {
+            $erreurs['title'] = "Veuillez saisir un titre.";
+        }
         
-        if ($users = $_SESSION['username'] === null || $users = $_SESSION['username'] === '') {
-            redirect('index.php');
+        if (isset($_GET['category'])) {
+            $category = htmlspecialchars($_GET['category']);
+        } else {
+            $erreurs['category'] = "Veuillez sélectionner une catégorie.";
         }
 
-        $title = htmlspecialchars($_GET['title']);
-        $category = htmlspecialchars($_GET['category']);
-        $date = htmlspecialchars($_GET['date']);
-        $status = htmlspecialchars($_GET['status']);
-        $description = htmlspecialchars($_GET['description']);
-        $tasks = json_decode(file_get_contents('data/' . $users . "-tasks.json"), true);
-        $taskExists = false;
+        if (isset($_GET['date']) && !empty($_GET['date'])) {
+            $date = htmlspecialchars($_GET['date']);
+        } else {
+            $erreurs['date'] = "Veuillez saisir une date.";
+        }
 
-       
-            $tasks[] = [
+        if (isset($_GET['status'])) {
+            $status = htmlspecialchars($_GET['status']);
+        } else {
+            $erreurs['status'] = "Veuillez sélectionner un statut.";
+        }
+
+        if (isset($_GET['description']) && !empty($_GET['description'])) {
+            $description = htmlspecialchars($_GET['description']);
+        } else {
+            $erreurs['description'] = "Veuillez saisir une description.";
+        }
+
+        $user = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+
+        if (!$user) {
+            redirect('index.php');
+        }
+        
+        if (empty($erreurs)) {
+            $newTask = [
                 'title' => $title,
                 'category' => $category,
                 'date' => $date,
                 'status' => $status,
                 'description' => $description
             ];
-            file_put_contents('data/' . $users . "-tasks.json", json_encode($tasks));
+            addTask($user, $newTask);
+
             echo "<div class='alert alert-success'>Tâche ajoutée avec succès</div>";
-            redirect('task-index.php');
-    } else {
-        echo "<div class='alert alert-danger'>Veuillez remplir tous les champs</div>";
+            $title = $category = $date = $status = $description = '';
+           
+
+        }
     }
+
+    
+    $categories = json_decode(file_get_contents('data/categories.json'), true);
+    $status = json_decode(file_get_contents('data/status.json'), true);
     ?>
-    <?php require "../views/footer.php" ?>
+
+    <?php require "../views/body.php"; ?>
+    <?php require "../views/footer.php"; ?>
 </body>
 
 </html>
