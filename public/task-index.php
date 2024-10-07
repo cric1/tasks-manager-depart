@@ -47,16 +47,42 @@
                     session_start();
                     $user = $_SESSION['username'];
                     $tasks = readFromFile("data/" . $user . "-tasks.json");
-
+                 
+                        
                     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                        // Filtrer par texte
-                        if (isset($_GET['searchText']) && !empty($_GET['searchText'])) {
-                            $searchText = $_GET['searchText'];
-                            $tasks = array_filter($tasks, function($task) use ($searchText) {
-                                return strpos($task['title'], $searchText) !== false || strpos($task['description'], $searchText) !== false;
-                            });
-                        }
+                           
+                            if (isset($_GET['category']) && !empty($_GET['category'])) {
+                                $categoryFilter = htmlspecialchars($_GET['category']);
+                        
+                                if ($categoryFilter != 'Toutes les catégories') {
+                                    $tasks = array_filter($tasks, function($task) use ($categoryFilter): bool {
+                                        return isset($task['category']) && $task['category'] === $categoryFilter;
+                                    });
+                                }
+                            }
+                        
+                           
+                            if (isset($_GET['status']) && !empty($_GET['status'])) {
+                                $statusFilter = htmlspecialchars($_GET['status']);
+                        
+                                if ($statusFilter != 'Tous les status') {
+                                    $tasks = array_filter($tasks, function($task) use ($statusFilter): bool {
+                                        return isset($task['status']) && $task['status'] === $statusFilter;
+                                    });
+                                }
+                            }
+                        
+                           
+                            if (isset($_GET['searchText']) && !empty($_GET['searchText'])) {
+                                $searchText = htmlspecialchars($_GET['searchText']);
+                                $tasks = array_filter($tasks, function($task) use ($searchText) {
+                                    return (isset($task['title']) && $task['title'] === $searchText) ||
+                                           (isset($task['description']) && $task['description'] === $searchText);
+                                });
+                            }
                     }
+                        
+                    
                 ?>
 
                 <!-- TODO : Ajouter une tâche -->
