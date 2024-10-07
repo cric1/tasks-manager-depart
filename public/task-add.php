@@ -65,11 +65,8 @@
 
             echo "<div class='alert alert-success'>Tâche ajoutée avec succès</div>";
             $title = $category = $date = $status = $description = '';
-           
-
         }
     }
-
     
     $categories = json_decode(file_get_contents('data/categories.json'), true);
     $status = json_decode(file_get_contents('data/status.json'), true);
