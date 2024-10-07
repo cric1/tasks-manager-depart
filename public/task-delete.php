@@ -11,20 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['confirm_delete'])) {
         deleteTask($user, $taskNum);
-    } else {
-            $task = readFromFile('data/' . $user . '-tasks.json')[$taskNum] ;
-            $title = $task['title'];
-            $category = $task['category'];
-            $date = $task['date'];
-            $status = $task['status'];
-            $description = $task['description'];
-            
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php require "../views/head.php"; ?>
+<?php require "../views/head.php"; 
+ $task = readFromFile('data/' . $user . '-tasks.json')[$taskNum] ;
+?>
 
 <body>
     <?php require "../views/header.php"; ?>
@@ -42,31 +36,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="mb-3">
                                 <label for="title" class="form-label">Titre</label>
                                 <input disabled type="text" class="form-control" id="title" 
-                                    value="<?= htmlspecialchars($title) ?>">
+                                    value="<?= htmlspecialchars($task['title']) ?>">
                             </div>
 
                             <div class="mb-3">
                                 <label for="category" class="form-label">Catégorie</label>
                                 <input disabled type="text" class="form-control" id="category" 
-                                    value="<?= $category ?>">
+                                    value="<?= $task['category'] ?>">
                             </div>
 
                             <div class="mb-3">
                                 <label for="date" class="form-label">Date</label>
                                 <input disabled type="date" class="form-control" id="date" 
-                                    value="<?= $date ?>">
+                                    value="<?= $task['date']; ?>">
                             </div>
 
                             <div class="mb-3">
                                 <label for="status" class="form-label">Statut</label>
                                 <input disabled type="text" class="form-control" id="status" 
-                                    value="<?= $status ?>">
+                                    value="<?=$task['status']; ?>">
                             </div>
 
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
                                 <input disabled type="text" class="form-control" id="description" 
-                                    value="<?= htmlspecialchars($description) ?>">
+                                    value="<?= htmlspecialchars($task['description']) ?>">
                             </div>
 
                             <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
