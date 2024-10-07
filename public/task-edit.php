@@ -12,32 +12,32 @@
          $formSubmitted = true;
          $taskNum = $_POST['task_id'];
 
-         if (isset($_GET['title']) && !empty($_GET['title'])) {
-            $title = htmlspecialchars($_GET['title']);
+         if (isset($_POST['title']) && !empty($_POST['title'])) {
+            $title = htmlspecialchars($_POST['title']);
         } else {
             $erreurs['title'] = "Veuillez saisir un titre.";
         }
         
-        if (isset($_GET['category'])) {
-            $category = htmlspecialchars($_GET['category']);
+        if (isset($_POST['category'])) {
+            $category = htmlspecialchars($_POST['category']);
         } else {
             $erreurs['category'] = "Veuillez sélectionner une catégorie.";
         }
 
-        if (isset($_GET['date']) && !empty($_GET['date'])) {
-            $date = htmlspecialchars($_GET['date']);
+        if (isset($_POST['date']) && !empty($_POST['date'])) {
+            $date = htmlspecialchars($_POST['date']);
         } else {
             $erreurs['date'] = "Veuillez saisir une date.";
         }
 
-        if (isset($_GET['status'])) {
-            $status = htmlspecialchars($_GET['status']);
+        if (isset($_POST['status'])) {
+            $status = htmlspecialchars($_POST['status']);
         } else {
             $erreurs['status'] = "Veuillez sélectionner un statut.";
         }
 
-        if (isset($_GET['description']) && !empty($_GET['description'])) {
-            $description = htmlspecialchars($_GET['description']);
+        if (isset($_POST['description']) && !empty($_POST['description'])) {
+            $description = htmlspecialchars($_POST['description']);
         } else {
             $erreurs['description'] = "Veuillez saisir une description.";
         }
@@ -58,9 +58,6 @@
             ];
             
             updateTask('data/' . $user . '-tasks.json', $taskNum, $updatedTask);
-
-
-            $title = $category = $date = $status = $description = '';
         }
     }
     
@@ -77,71 +74,70 @@
      <?php require "../views/header.php"; ?>
 
      <div class="container mt-4">
-    <div class="row justify-content-center">
+      <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h2> Modifier une Tâche </h2>
-                    <form method="GET">
+                    <form method="POST">
                         <!-- Champ Titre -->
                         <input type="hidden" name="task_id" value="<?= $taskNum ?>">
                         <input type="hidden" name="confirm_delete" value="1">
                         <div class="mb-3">
                             <label for="title" class="form-label">Titre</label>
-                            <input type="text" class="form-control" id="title" name="title" value=" <?= htmlspecialchars($task['title']) ?> ">
-                            <?php if ($formSubmitted && isset($erreurs['title'])) : ?>
-                                <div class="text-danger"><?= $erreurs['title'] ?></div>
-                            <?php endif; ?>
+                            <input type="text" class="form-control" id="title" name="title" value="<?= htmlspecialchars($task['title']) ?>">
+                                <?php if ($formSubmitted && isset($erreurs['title'])) : ?>
+                                    <div class="text-danger"><?= $erreurs['title'] ?></div>
+                                <?php endif; ?>
                         </div>
 
                         <!-- Champ Catégorie -->
                         <div class="mb-3">
                             <label for="category" class="form-label">Catégorie</label>
                             <select id="category" name="category" class="form-select">
-                                <option value=" <?= $task['category'] ?> "> <?= $task['category'] ?> </option>
-                                <?php foreach ($categories as $cat): ?>
-                                    
-                                    <option value="<?= htmlspecialchars($cat['name']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
-                                <?php endforeach; ?>
+                                <option hidden value=" <?= $task['category'] ?> "> <?= $task['category'] ?> </option>
+                                    <?php foreach ($categories as $cat): ?>
+                                        <option value="<?= htmlspecialchars($cat['name']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
+                                    <?php endforeach; ?>
                             </select>
-                            <?php if ($formSubmitted && isset($erreurs['category'])): ?>
-                                <div class="text-danger"><?= $erreurs['category'] ?></div>
-                            <?php endif; ?>
+                                <?php if ($formSubmitted && isset($erreurs['category'])): ?>
+                                    <div class="text-danger"><?= $erreurs['category'] ?></div>
+                                <?php endif; ?>
                         </div>
 
                         <!-- Champ Date -->
                         <div class="mb-3">
                             <label for="date" class="form-label">Date</label>
                             <input type="date" class="form-control" id="date" name="date" value="<?= $task['date'] ?>">
-                            <?php if ($formSubmitted && isset($erreurs['date'])): ?>
-                                <div class="text-danger"><?= $erreurs['date'] ?></div>
-                            <?php endif; ?>
+                                <?php if ($formSubmitted && isset($erreurs['date'])): ?>
+                                    <div class="text-danger"><?= $erreurs['date'] ?></div>
+                                <?php endif; ?>
                         </div>
 
                         <!-- Champ Statut -->
                         <div class="mb-3">
                             <label for="status" class="form-label">Statut</label>
                             <select id="status" name="status" class="form-select">
-                                <option value=" <?= $task['status'] ?> "> <?= $task['status'] ?> </option>
-                                <?php foreach ($status as $stat): ?>
-                                    <option value="<?= htmlspecialchars($stat['name']) ?>"><?= htmlspecialchars($stat['name'])?></option>
-                                <?php endforeach; ?>
+                                <option hidden value=" <?= $task['status'] ?> "> <?= $task['status'] ?> </option> 
+                                    <?php foreach ($status as $stat): ?>
+                                        <option value="<?= htmlspecialchars($stat['name']) ?>"><?= htmlspecialchars($stat['name'])?></option>
+                                    <?php endforeach; ?>
                             </select>
-                            <?php if ($formSubmitted && isset($erreurs['status'])): ?>
-                                <div class="text-danger"><?= $erreurs['status'] ?></div>
-                            <?php endif; ?>
+                                <?php if ($formSubmitted && isset($erreurs['status'])): ?>
+                                    <div class="text-danger"><?= $erreurs['status'] ?></div>
+                                <?php endif; ?>
                         </div>
 
                         <!-- Champ Description -->
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"> <?= htmlspecialchars($task['description']) ?> </textarea>
-                            <?php if ($formSubmitted && isset($erreurs['description'])): ?>
-                                <div class="text-danger"><?= $erreurs['description'] ?></div>
-                            <?php endif; ?>
+                            <textarea class="form-control" id="description" name="description" rows="3"><?= htmlspecialchars($task['description']) ?> </textarea>
+                                <?php if ($formSubmitted && isset($erreurs['description'])): ?>
+                                    <div class="text-danger"><?= $erreurs['description'] ?></div>
+                                <?php endif; ?>
                         </div>
 
-                        <button type="submit" class="btn btn-success"> Modifier </button>
+                        <button type="submit" class="btn btn-warning"> Modifier </button>
                         <a class="btn btn-primary" href="task-index.php"><span class="bi-arrow-left"></span> Annuler</a>
                     </form>
                 </div>
