@@ -42,7 +42,6 @@ function addTask(string $user, array $newTask): void {
 
 function updateTask(string $filename, int $index, array $updatedTask): void {
     $tasks = readFromFile($filename);
-    
     $tasks[$index] = $updatedTask;
     writeToFile($filename, $tasks);
     redirect('task-index.php');
@@ -53,8 +52,4 @@ function deleteTask($user, $taskNum):void {
     unset($tasks[$taskNum]); 
     writeToFile("data/{$user}-tasks.json", $tasks);
     redirect('task-index.php');
-}
-
-function renderOptions(string $file, string $itemSelected = "") : string {
-   
 }

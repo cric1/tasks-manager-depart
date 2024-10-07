@@ -53,7 +53,7 @@
                 'status' => $status,
                 'description' => $description
             ];
-            var_dump($_POST);
+           
             updateTask('data/' . $user . '-tasks.json', $taskNum, $updatedTask);
         }
     }
