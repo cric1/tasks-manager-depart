@@ -10,31 +10,31 @@
      if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
         $formSubmitted = true;
          if (isset($_POST['title']) && !empty($_POST['title'])) {
-            $title = htmlspecialchars($_POST['title']);
+            $title = trim(htmlspecialchars($_POST['title']));
         } else {
             $erreurs['title'] = "Veuillez saisir un titre.";
         }
         
         if (isset($_POST['category'])) {
-            $category = $_POST['category'];
+            $category = trim($_POST['category']);
         } else {
             $erreurs['category'] = "Veuillez sélectionner une catégorie.";
         }
 
         if (isset($_POST['date']) && !empty($_POST['date'])) {
-            $date = $_POST['date'];
+            $date = trim($_POST['date']);
         } else {
             $erreurs['date'] = "Veuillez saisir une date.";
         }
 
         if (isset($_POST['status'])) {
-            $status = $_POST['status'];
+            $status = trim($_POST['status']);
         } else {
             $erreurs['status'] = "Veuillez sélectionner un statut.";
         }
 
         if (isset($_POST['description']) && !empty($_POST['description'])) {
-            $description = htmlspecialchars($_POST['description']);
+            $description = trim(htmlspecialchars($_POST['description']));
         } else {
             $erreurs['description'] = "Veuillez saisir une description.";
         }
