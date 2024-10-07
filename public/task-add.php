@@ -75,6 +75,8 @@
     $status = json_decode(file_get_contents('data/status.json'), true);
     ?>
 
+    <?php $titre = "Ajouter une tâche" ?>
+    <?php $nomBtn = "Ajouter" ?>
     <?php require "../views/body.php"; ?>
     <?php require "../views/footer.php"; ?>
 </body>

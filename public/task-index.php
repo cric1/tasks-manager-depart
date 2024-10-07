@@ -56,6 +56,21 @@
                 if(isset($_SESSION['username'])) {
                     $users = $_SESSION['username'];
                     $tasks = readFromFile('data/' . $users . "-tasks.json");
+
+                    /* Filtrer qui marche pas
+                    $selectedCategory = htmlspecialchars($tasks['category']) ?? '';
+                    $selectedStatus = htmlspecialchars($tasks['status']) ?? '';
+                    $text =  '';
+
+                    $filteredTasks = array_filter($tasks, function($task) use ($selectedCategory, $selectedStatus, $text) {
+
+                        $filteredCategory = empty($selectedCategory) || $task['category'] === $selectedCategory;
+                        $filteredStatus = empty($selectedStatus) || $task['status'] === $selectedStatus;
+                        $filteredText = empty($searchText) || stripos($task['title'], $text) !== false || stripos($task['description'], $text) !== false;
+
+                        return $filteredCategory && $filteredStatus && $filteredText;
+                    });
+                    */
                 } else {
                     redirect("index.php");
                     exit();

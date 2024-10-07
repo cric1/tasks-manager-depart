@@ -7,7 +7,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h2>Ajouter une tâche</h2>
+                    <h2> <?= $titre ?> </h2>
                     <form method="GET">
                         <!-- Champ Titre -->
                         <div class="mb-3">
@@ -65,7 +65,7 @@
                             <?php endif; ?>
                         </div>
 
-                        <button type="submit" class="btn btn-success">Ajouter</button>
+                        <button type="submit" class="btn btn-success"> <?= $nomBtn ?></button>
                         <a class="btn btn-primary" href="task-index.php"><span class="bi-arrow-left"></span> Annuler</a>
                     </form>
                 </div>
