@@ -8,7 +8,7 @@
     <?php require '../src/functions.php';
     
     //message au prof: j'ai ajouté session_start() ici pour que la variable de session et donc username soit accessible dans le fichier.
-    //je pense pas quon a vu ca en classe mais je ne trouve pas une autre solution
+    //je pense pas qu'on a vu ca en classe mais je ne trouve pas une autre solution
     
     session_start();    
     $erreurs = [];
@@ -75,6 +75,8 @@
     $status = json_decode(file_get_contents('data/status.json'), true);
     ?>
 
+    <?php $titre = "Ajouter une tâche" ?>
+    <?php $nomBtn = "Ajouter" ?>
     <?php require "../views/body.php"; ?>
     <?php require "../views/footer.php"; ?>
 </body>

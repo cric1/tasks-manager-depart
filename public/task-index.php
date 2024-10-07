@@ -41,15 +41,7 @@
 
                         <div class="col-md-2">
                             <!-- ****** Manque la fonction (filtrer selon les valeurs)-->
-<<<<<<< HEAD
-                            <button class="btn btn-primary" type="submit">Filtrer</button>
-                            <?php  
-                                ?>  
-                            
-
-=======
                             <button class="btn btn-primary" type="button">Filtrer</button>
->>>>>>> 89c75c0af585c2b298c5ec20347ee5ddde51d977
                         </div>
                     </div>
                 </form>
@@ -66,6 +58,7 @@
                     $users = $_SESSION['username'];
                     $tasks = readFromFile('data/' . $users . "-tasks.json");
 
+                    /* Filtrer qui marche pas
                     $selectedCategory = htmlspecialchars($tasks['category']) ?? '';
                     $selectedStatus = htmlspecialchars($tasks['status']) ?? '';
                     $text =  '';
@@ -78,25 +71,16 @@
 
                         return $filteredCategory && $filteredStatus && $filteredText;
                     });
-
+                    */
                 } else {
                     redirect("index.php");
                     exit();
                 }
                 ?>
-<<<<<<< HEAD
-               
-                
-              
-                <!-- TODO : Liste des tâches -->
-                <div class="row g-3">
-                <?php foreach($filteredTasks as $task) : ?>
-=======
 
                 <div class="row g-3">
                     <?php foreach($tasks as $task) : ?>
                     <!-- TODO : Liste des tâches -->
->>>>>>> 89c75c0af585c2b298c5ec20347ee5ddde51d977
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card card-custom">
                             <div class="card-body">
@@ -125,10 +109,6 @@
                                     <form action="task-delete.php" method="POST" class="d-inline-block">
                                         <button class="btn btn-danger" type="submit">Supprimer</button>
                                     </form>
-<<<<<<< HEAD
-                                
-=======
->>>>>>> 89c75c0af585c2b298c5ec20347ee5ddde51d977
                                 </div>
                             </div>
                         </div>
