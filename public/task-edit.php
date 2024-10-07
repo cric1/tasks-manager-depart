@@ -11,9 +11,63 @@
      if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
          $formSubmitted = true;
          $taskNum = $_POST['task_id'];
-     }
- 
-     ?>
+
+         if (isset($_GET['title']) && !empty($_GET['title'])) {
+            $title = htmlspecialchars($_GET['title']);
+        } else {
+            $erreurs['title'] = "Veuillez saisir un titre.";
+        }
+        
+        if (isset($_GET['category'])) {
+            $category = htmlspecialchars($_GET['category']);
+        } else {
+            $erreurs['category'] = "Veuillez sélectionner une catégorie.";
+        }
+
+        if (isset($_GET['date']) && !empty($_GET['date'])) {
+            $date = htmlspecialchars($_GET['date']);
+        } else {
+            $erreurs['date'] = "Veuillez saisir une date.";
+        }
+
+        if (isset($_GET['status'])) {
+            $status = htmlspecialchars($_GET['status']);
+        } else {
+            $erreurs['status'] = "Veuillez sélectionner un statut.";
+        }
+
+        if (isset($_GET['description']) && !empty($_GET['description'])) {
+            $description = htmlspecialchars($_GET['description']);
+        } else {
+            $erreurs['description'] = "Veuillez saisir une description.";
+        }
+
+        $user = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+
+        if (!$user) {
+            redirect('index.php');
+        }
+        
+        if (empty($erreurs)) {
+            $updatedTask = [
+                'title' => $title,
+                'category' => $category,
+                'date' => $date,
+                'status' => $status,
+                'description' => $description
+            ];
+            
+            updateTask('data/' . $user . '-tasks.json', $index, $updatedTask);
+
+            echo "<div class='alert alert-success'>Tâche ajoutée avec succès</div>";
+            $title = $category = $date = $status = $description = '';
+        }
+    }
+    
+     $categories = readFromFile('data/categories.json');
+     $status = readFromFile('data/status.json');
+    ?>
+     
 <!DOCTYPE html>
 <html lang="fr">
 <?php require "../views/head.php"; 
