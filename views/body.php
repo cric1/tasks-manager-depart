@@ -25,7 +25,7 @@
                                 <option value="" disabled selected>-- Veuillez faire une sélection --</option>
                                 <?php foreach ($categories as $cat): ?>
                                     
-                                    <option value="<?= htmlspecialchars($cat['name']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
+                                    <option value="<?= $cat['name'] ?>"><?= $cat['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <?php if ($formSubmitted && isset($erreurs['category'])): ?>
@@ -48,7 +48,7 @@
                             <select id="status" name="status" class="form-select">
                                 <option value="" disabled selected>-- Veuillez faire une sélection --</option>
                                 <?php foreach ($status as $stat): ?>
-                                    <option value="<?= htmlspecialchars($stat['name']) ?>"><?= htmlspecialchars($stat['name'])?></option>
+                                    <option value="<?= $stat['name'] ?>"><?= $stat['name']?></option>
                                 <?php endforeach; ?>
                             </select>
                             <?php if ($formSubmitted && isset($erreurs['status'])): ?>

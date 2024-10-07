@@ -19,31 +19,31 @@
         $formSubmitted = true;
         
         if (isset($_GET['title']) && !empty($_GET['title'])) {
-            $title = htmlspecialchars($_GET['title']);
+            $title = $_GET['title'];
         } else {
             $erreurs['title'] = "Veuillez saisir un titre.";
         }
         
         if (isset($_GET['category'])) {
-            $category = htmlspecialchars($_GET['category']);
+            $category = $_GET['category'];
         } else {
             $erreurs['category'] = "Veuillez sélectionner une catégorie.";
         }
 
         if (isset($_GET['date']) && !empty($_GET['date'])) {
-            $date = htmlspecialchars($_GET['date']);
+            $date = $_GET['date'];
         } else {
             $erreurs['date'] = "Veuillez saisir une date.";
         }
 
         if (isset($_GET['status'])) {
-            $status = htmlspecialchars($_GET['status']);
+            $status = $_GET['status'];
         } else {
             $erreurs['status'] = "Veuillez sélectionner un statut.";
         }
 
         if (isset($_GET['description']) && !empty($_GET['description'])) {
-            $description = htmlspecialchars($_GET['description']);
+            $description = $_GET['description'];
         } else {
             $erreurs['description'] = "Veuillez saisir une description.";
         }

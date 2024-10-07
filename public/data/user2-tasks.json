@@ -1,37 +1,37 @@
 {
     "14": {
-        "title": "Écrire un article",
+        "title": "\u00c9crire un article",
         "category": "Travail",
         "date": "2024-07-23",
-        "description": "Rédiger un article pour le blog de l'entreprise",
-        "status": "Terminé"
+        "status": "Termin\u00e9",
+        "description": "R\u00e9diger un article pour le blog de l&amp;#039;entreprise"
     },
     "15": {
         "title": "Faire du yoga",
-        "category": "Sport",
+        "category": "Personnel",
         "date": "2024-07-24",
-        "description": "Participer à une séance de yoga",
-        "status": "Terminé"
+        "status": "En Cours",
+        "description": "Participer \u00e0 une s\u00e9ance de yoga"
     },
     "16": {
-        "title": "Visiter un musée",
+        "title": "Visiter un mus\u00e9e",
         "category": "Personnel",
         "date": "2024-07-25",
-        "description": "Aller voir l'exposition au musée",
-        "status": "À Débuter"
+        "description": "Aller voir l'exposition au mus\u00e9e",
+        "status": "\u00c0 D\u00e9buter"
     },
     "17": {
-        "title": "Réparer la clôture",
+        "title": "R\u00e9parer la cl\u00f4ture",
         "category": "Maison",
         "date": "2024-07-26",
-        "description": "Réparer la clôture du jardin",
+        "description": "R\u00e9parer la cl\u00f4ture du jardin",
         "status": "En Cours"
     },
     "18": {
-        "title": "Préparer une présentation",
+        "title": "Pr\u00e9parer une pr\u00e9sentation",
         "category": "Travail",
         "date": "2024-07-27",
-        "description": "Créer la présentation pour le séminaire",
-        "status": "Terminé"
+        "description": "Cr\u00e9er la pr\u00e9sentation pour le s\u00e9minaire",
+        "status": "Termin\u00e9"
     }
 }
