@@ -27,6 +27,7 @@
                             <select class="form-select" name="status">
                                 <option value="" selected hidden>Tous les status</option>
                                 <?php $statusFile = readFromFile("data/status.json");?>
+                                    
                                 <?php foreach($statusFile as $status) : ?>
                                     <option value="<?= $status['name'] ?>"> <?= $status['name'] ?></option>
                                 <?php endforeach ?>
@@ -92,7 +93,18 @@
                                 <h6 class="card-subtitle mb-2 text-muted">
                                     <?= $task["category"] ?> - 
                                     <?= $task["date"] ?> 
-                                    <?= $task["status"] ?>
+                                    <?php 
+                                        if($task["status"] === 'Terminé'){
+                                            $badgeStatus = '<span class="badge bg-success ms-3">' . $task["status"] . '</span>';
+                                        }
+                                        if($task["status"] === 'En Cours'){
+                                            $badgeStatus = '<span class="badge bg-secondary ms-3">' . $task["status"] . '</span>';
+                                        }
+                                        if($task["status"] === 'À Débuter'){
+                                            $badgeStatus = '<span class="badge bg-primary ms-3">' . $task["status"] . '</span>';
+                                        }
+                                    ?>
+                                    <?= $badgeStatus ?>
                                 </h6>
                                 <p class="card-text"><?= htmlspecialchars($task["description"]) ?></p>
                                 <div class="container">
