@@ -43,8 +43,8 @@ require '../src/functions.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['username'])) {
-        $username = htmlspecialchars($_POST['username']);
-        $users = json_decode(file_get_contents('data/users.json'), true);
+        $username = $_POST['username'];
+        $users = readFromFile('data/users.json');
         $userExists = false;
         foreach ($users as $user) {
             if ($user['username'] === $username) {
@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($userExists) {
            $_SESSION['username'] = $username;
            redirect('task-index.php'); 
-           var_dump($_SESSION['username']);
            exit();
         } else {
             echo "<div class='alert alert-danger'>Nom d'utilisateur incorrect</div>";

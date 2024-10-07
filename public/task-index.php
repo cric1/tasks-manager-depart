@@ -2,6 +2,12 @@
 <html lang="fr">
 <?php require '../src/functions.php'?>
 <?php require "../views/head.php"?>  
+<?php 
+    session_start();
+    if (!isset($_SESSION['username'])) {
+    redirect('index.php');
+    }
+    $user = $_SESSION['username'];?>
 
 <body>
     <?php require "../views/header.php"?>  
@@ -45,11 +51,8 @@
                 </form>
 
                 <?php 
-                    session_start();
-                    $user = $_SESSION['username'];
                     $tasks = readFromFile("data/" . $user . "-tasks.json");
                  
-                        
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            
                             if (!empty($_POST['category'])) {

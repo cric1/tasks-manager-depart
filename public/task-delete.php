@@ -1,17 +1,13 @@
 <?php
 require '../src/functions.php';
 session_start();
-
 if (!isset($_SESSION['username'])) {
     redirect('index.php');
 }
 $user = $_SESSION['username'];
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $taskNum = $_POST['task_id'];
-
-    if (isset($_POST['confirm_delete'])) {
+$taskNum = $_POST['task_id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
         deleteTask($user, $taskNum);
-    }
 }
 ?>
 <!DOCTYPE html>

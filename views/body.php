@@ -13,7 +13,7 @@
                         <div class="mb-3">
                             <label for="title" class="form-label">Titre</label>
                             <input type="text" class="form-control" id="title" name="title" value="<?= $title ?>">
-                            <?php if ($formSubmitted && isset($erreurs['title'])): ?>
+                            <?php if (isset($erreurs['title'])): ?>
                                 <div class="text-danger"><?= $erreurs['title'] ?></div>
                             <?php endif; ?>
                         </div>
@@ -28,7 +28,7 @@
                                     <option value="<?= $cat['name'] ?>"><?= $cat['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <?php if ($formSubmitted && isset($erreurs['category'])): ?>
+                            <?php if (isset($erreurs['category'])): ?>
                                 <div class="text-danger"><?= $erreurs['category'] ?></div>
                             <?php endif; ?>
                         </div>
@@ -37,7 +37,7 @@
                         <div class="mb-3">
                             <label for="date" class="form-label">Date</label>
                             <input type="date" class="form-control" id="date" name="date" value="<?= $date ?>">
-                            <?php if ($formSubmitted && isset($erreurs['date'])): ?>
+                            <?php if (isset($erreurs['date'])): ?>
                                 <div class="text-danger"><?= $erreurs['date'] ?></div>
                             <?php endif; ?>
                         </div>
@@ -51,7 +51,7 @@
                                     <option value="<?= $stat['name'] ?>"><?= $stat['name']?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <?php if ($formSubmitted && isset($erreurs['status'])): ?>
+                            <?php if (isset($erreurs['status'])): ?>
                                 <div class="text-danger"><?= $erreurs['status'] ?></div>
                             <?php endif; ?>
                         </div>
@@ -60,7 +60,7 @@
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control" id="description" name="description" rows="3"><?= $description ?></textarea>
-                            <?php if ($formSubmitted && isset($erreurs['description'])): ?>
+                            <?php if (isset($erreurs['description'])): ?>
                                 <div class="text-danger"><?= $erreurs['description'] ?></div>
                             <?php endif; ?>
                         </div>

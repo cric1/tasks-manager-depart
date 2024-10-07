@@ -10,14 +10,14 @@
     //message au prof: j'ai ajouté session_start() ici pour que la variable de session et donc username soit accessible dans tout les fichiers.
     //je pense pas quon a vu ca en classe mais je ne trouve pas une autre solution
     
-    session_start();    
+    session_start();  
+    if (isset($_SESSION['username'])) {
+        redirect('index.php');
+    }  
     $erreurs = [];
-    $formSubmitted = false; 
     $title = $category = $date = $status = $description = '';
-    
+
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
-        $formSubmitted = true;
-        
         if (isset($_GET['title']) && !empty($_GET['title'])) {
             $title = $_GET['title'];
         } else {
@@ -47,13 +47,7 @@
         } else {
             $erreurs['description'] = "Veuillez saisir une description.";
         }
-
-        $user = isset($_SESSION['username']) ? $_SESSION['username'] : null;
-
-        if (!$user) {
-            redirect('index.php');
-        }
-        
+ 
         if (empty($erreurs)) {
             $newTask = [
                 'title' => $title,
@@ -62,8 +56,7 @@
                 'status' => $status,
                 'description' => $description
             ];
-            addTask($user, $newTask);
-
+            addTask($_SESSION['username'], $newTask);
             echo "<div class='alert alert-success'>Tâche ajoutée avec succès</div>";
             $title = $category = $date = $status = $description = '';
         }

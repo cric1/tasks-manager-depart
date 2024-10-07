@@ -1,6 +1,7 @@
 <?php
+require 'functions.php';
 session_start();
-unset($_SESSION['username']); // Reset the username session variable
-header('Location: ../public/index.php');
+unset($_SESSION['username']);
+redirect('../public/index.php');
 exit();
 ?>
