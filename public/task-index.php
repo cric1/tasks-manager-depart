@@ -50,7 +50,10 @@
                         <div class="col-md-2">
                             
                             <!-- ****** Manque la fonction (filtrer selon les valeurs)-->
-                            <button class="btn btn-primary" type="button">Filtrer</button>
+                            <button class="btn btn-primary" type="submit">Filtrer</button>
+                            <?php  
+                                ?>  
+                            
 
                         </div>
                     </div>
@@ -71,6 +74,20 @@
                 if(isset($_SESSION['username'])) {
                     $users = $_SESSION['username'];
                     $tasks = readFromFile('data/' . $users . "-tasks.json");
+
+                    $selectedCategory = htmlspecialchars($tasks['category']) ?? '';
+                    $selectedStatus = htmlspecialchars($tasks['status']) ?? '';
+                    $text =  '';
+
+                    $filteredTasks = array_filter($tasks, function($task) use ($selectedCategory, $selectedStatus, $text) {
+
+                        $filteredCategory = empty($selectedCategory) || $task['category'] === $selectedCategory;
+                        $filteredStatus = empty($selectedStatus) || $task['status'] === $selectedStatus;
+                        $filteredText = empty($searchText) || stripos($task['title'], $text) !== false || stripos($task['description'], $text) !== false;
+
+                        return $filteredCategory && $filteredStatus && $filteredText;
+                    });
+
                 } else {
                     redirect("index.php");
                     exit();
@@ -78,14 +95,27 @@
                 ?>
                
                 
-                <?php foreach($tasks as $task) : ?>
+              
                 <!-- TODO : Liste des tâches -->
                 <div class="row g-3">
+                <?php foreach($filteredTasks as $task) : ?>
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card card-custom">
                             <div class="card-body">
                                 <h5 class="card-title"> <?= $task["title"]?> </h5>
-                                <h6 class="card-subtitle mb-2 text-muted"> <?= $task["category"]?> - <?= $task["date"] . $task["status"]?> </h6>
+                                
+                                <?php if($task["status"] == "À Débuter") {
+                                        $badgeStatut =  "<span class='badge bg-primary ms-3'>" . $task['status'] . "</span>";
+                                      } 
+                                      if($task["status"] == "En Cours") {
+                                        $badgeStatut =  "<span class='badge bg-secondary ms-3'>" . $task['status'] . "</span>";
+                                      }
+                                      if($task["status"] == "Terminé") {
+                                        $badgeStatut =  "<span class='badge bg-success ms-3'>" . $task['status'] . "</span>";
+                                      }     
+                                ?>
+
+                                <h6 class="card-subtitle mb-2 text-muted"> <?= $task["category"]?> - <?= $task["date"] . $badgeStatut ?> </h6>
                                 <p class="card-text"> <?= $task["description"]?> </p>
                                 <div class="container">
 
@@ -106,13 +136,13 @@
                                                 }
                                             ?> 
                                     </form>
-
+                                
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php endforeach ?>
                 </div>
-                <?php endforeach ?>
             </div>
         </div>
         
