@@ -37,15 +37,14 @@ function addTask(string $user, array $newTask): void {
     writeToFile($filename, $tasks);
 }
 
-
-
-
 function updateTask(string $filename, int $index, array $updatedTask): void {
     
 }
 
-function deleteTask(string $filename, int $index): void {
-    
+function deleteTask($user, $taskId) {
+    $tasks = readFromFile('data/' . $user . '-tasks.json'); 
+    unset($tasks[$taskId]); 
+    return writeToFile("data/{$user}-tasks.json", $tasks);
 }
 
 function renderOptions(string $file, string $itemSelected = "") : string {

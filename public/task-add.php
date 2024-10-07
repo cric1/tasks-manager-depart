@@ -7,7 +7,7 @@
     <?php require "../views/header.php"; ?>
     <?php require '../src/functions.php';
     
-    //message au prof: j'ai ajouté session_start() ici pour que la variable de session et donc username soit accessible dans le fichier.
+    //message au prof: j'ai ajouté session_start() ici pour que la variable de session et donc username soit accessible dans tout les fichiers.
     //je pense pas quon a vu ca en classe mais je ne trouve pas une autre solution
     
     session_start();    

@@ -1,5 +1,5 @@
 <?php
-// Ceci doit être appelé à partir de task-add.php pour avoir les variables nécessaires
+
 ?>
 
 <div class="container mt-4">

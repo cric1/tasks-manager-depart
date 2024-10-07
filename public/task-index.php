@@ -5,7 +5,6 @@
 
 <body>
     <?php require "../views/header.php"?>  
-
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">        
@@ -64,29 +63,32 @@
                 ?>
 
                 <div class="row g-3">
-                    <?php foreach($tasks as $task) : ?>
-                    <!-- TODO : Liste des tâches -->
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <div class="card card-custom">
-                            <div class="card-body">
-                                <h5 class="card-title"> <?= $task["title"]?> </h5>
-                                <h6 class="card-subtitle mb-2 text-muted"> <?= $task["category"]?> - <?= $task["date"] . $task["status"]?> </h6>
-                                <p class="card-text"> <?= $task["description"]?> </p>
-                                <div class="container">
-                                    <!-- TODO : Modifier une tâche -->
-                                    <form action="task-edit.php" method="POST" class="d-inline-block">
-                                        <button class="btn btn-warning" type="submit">Modifier</button>
-                                    </form>
+                <?php foreach($tasks as $taskId => $task) : ?>
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card card-custom">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($task["title"]) ?></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <?= $task["category"] ?> - 
+                                <?= $task["date"] ?> 
+                                <?= $task["status"] ?>
+                            </h6>
+                            <p class="card-text"><?= htmlspecialchars($task["description"]) ?></p>
+                            <div class="container">
+                                <form action="task-edit.php" method="POST" class="d-inline-block">
+                                    <input type="hidden" name="task_id" value="<?=$taskId ?>">
+                                    <button class="btn btn-warning" type="submit">Modifier</button>
+                                </form>
 
-                                    <!-- TODO : Supprimer une tâche -->
-                                    <form action="task-delete.php" method="POST" class="d-inline-block">
-                                        <button class="btn btn-danger" type="submit">Supprimer</button>
-                                    </form>
-                                </div>
+                                <form action="task-delete.php" method="POST" class="d-inline-block">
+                                    <input type="hidden" name="task_id" value="<?= $taskId?>">
+                                    <button class="btn btn-danger" type="submit">Supprimer</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <?php endforeach ?>
+                </div>
+            <?php endforeach ?>
                 </div>
             </div>
         </div>
