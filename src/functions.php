@@ -44,7 +44,8 @@ function updateTask(string $filename, int $index, array $updatedTask): void {
     $tasks = readFromFile($filename);
     
     $tasks[$index] = $updatedTask;
-    writeToFile($filename, $updatedTask);
+    writeToFile($filename, $tasks);
+    redirect('task-index.php');
 }
 
 function deleteTask($user, $taskNum):void {

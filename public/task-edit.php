@@ -57,9 +57,8 @@
                 'description' => $description
             ];
             
-            updateTask('data/' . $user . '-tasks.json', $index, $updatedTask);
+            updateTask('data/' . $user . '-tasks.json', $taskNum, $updatedTask);
 
-            echo "<div class='alert alert-success'>Tâche ajoutée avec succès</div>";
             $title = $category = $date = $status = $description = '';
         }
     }
