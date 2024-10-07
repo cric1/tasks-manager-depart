@@ -57,20 +57,10 @@
                 </form>
 
                 <!-- TODO : Ajouter une tâche -->
-<<<<<<< HEAD
                 <form action="task-add.php" method="POST" class="mb-2">
                     <button class="btn btn-success" type="submit">Ajouter une tâche</button>
                 </form>
                 <!-- ****** -->
-=======
-                <form action="" method="POST" class="mb-2">
-          
-                    <button class="btn btn-success" type="submit">Ajouter une tâche</button>
-                     <?php  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                                redirect("task-add.php");
-                            }
-                      ?> 
->>>>>>> 2d483f6252e0fcd24328b1bad711985994d9a6b0
 
                 </form>
                 <?php 
