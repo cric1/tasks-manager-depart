@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="fr">
 <?php require "../views/head.php"; 
- $task = readFromFile('data/' . $user . '-tasks.json')[$taskNum] ;
+ $task = readFromFile('data/' . $user . '-tasks.json')[$taskNum];
 ?>
 
 <body>
