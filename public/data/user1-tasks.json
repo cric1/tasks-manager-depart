@@ -91,24 +91,10 @@
         "status": "Termin\u00e9"
     },
     "14": {
-        "title": "caca",
-        "category": "",
-        "date": "2024-10-04",
-        "status": "",
-        "description": "caca"
-    },
-    "15": {
-        "title": "rewada",
-        "category": "",
-        "date": "2024-10-01",
-        "status": "",
-        "description": "aw"
-    },
-    "16": {
-        "title": "awdaw",
-        "category": "",
-        "date": "2024-10-17",
-        "status": "",
-        "description": "awd"
+        "title": "Finir le tp1 calis",
+        "category": "Travail",
+        "date": "2024-10-05",
+        "status": "En Cours",
+        "description": "a"
     }
 }
