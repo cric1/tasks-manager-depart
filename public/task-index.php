@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-12">        
                 <!-- TODO : Filtre -->
-                <form action="task-index.php" method="GET" class="mb-4"> 
+                <form action="task-index.php" method="POST" class="mb-4"> 
                     <div class="row">
                         <div class="col-md-3">
                             <!-- Catégorie -->
@@ -49,35 +49,28 @@
                     $tasks = readFromFile("data/" . $user . "-tasks.json");
                  
                         
-                    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            
-                            if (isset($_GET['category']) && !empty($_GET['category'])) {
-                                $categoryFilter = htmlspecialchars($_GET['category']);
-                        
-                                if ($categoryFilter != 'Toutes les catégories') {
-                                    $tasks = array_filter($tasks, function($task) use ($categoryFilter): bool {
-                                        return isset($task['category']) && $task['category'] === $categoryFilter;
-                                    });
-                                }
+                            if (!empty($_POST['category'])) {
+                                $categoryFilter = $_POST['category'];
+                                $tasks = array_filter($tasks, function($task) use ($categoryFilter): bool {
+                                return $task['category'] === $categoryFilter;
+                                });
+                                
                             }
-                        
-                           
-                            if (isset($_GET['status']) && !empty($_GET['status'])) {
-                                $statusFilter = htmlspecialchars($_GET['status']);
-                        
-                                if ($statusFilter != 'Tous les status') {
-                                    $tasks = array_filter($tasks, function($task) use ($statusFilter): bool {
-                                        return isset($task['status']) && $task['status'] === $statusFilter;
-                                    });
-                                }
+                                            
+                            if (!empty($_POST['status'])) {
+                                $statusFilter = $_POST['status'];
+                                $tasks = array_filter($tasks, function($task) use ($statusFilter): bool {
+                                return $task['status'] === $statusFilter;
+                                });
                             }
-                        
-                           
-                            if (isset($_GET['searchText']) && !empty($_GET['searchText'])) {
-                                $searchText = htmlspecialchars($_GET['searchText']);
+                                                
+                            if (!empty($_POST['searchText'])) {
+                                $searchText = htmlspecialchars($_POST['searchText']);
                                 $tasks = array_filter($tasks, function($task) use ($searchText) {
-                                    return (isset($task['title']) && $task['title'] === $searchText) ||
-                                           (isset($task['description']) && $task['description'] === $searchText);
+                                    return $task['title'] === $searchText ||
+                                           $task['description'] === $searchText;
                                 });
                             }
                     }
