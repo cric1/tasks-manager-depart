@@ -5,32 +5,23 @@ session_start();
 if (!isset($_SESSION['username'])) {
     redirect('index.php');
 }
-
 $user = $_SESSION['username'];
-$erreurs = [];
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $taskId = $_POST['task_id'];
+    $taskNum = $_POST['task_id'];
 
     if (isset($_POST['confirm_delete'])) {
-        if (deleteTask($user, $taskId)) {
-            redirect('task-index.php');
-        }
+        deleteTask($user, $taskNum);
     } else {
-        $tasks = readFromFile('data/' . $user . '-tasks.json');
-        $task = $tasks[$taskId] ;
-        
+            $task = readFromFile('data/' . $user . '-tasks.json')[$taskNum] ;
             $title = $task['title'];
             $category = $task['category'];
             $date = $task['date'];
             $status = $task['status'];
             $description = $task['description'];
+            
     }
-} else {
-    redirect('task-index.php');
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <?php require "../views/head.php"; ?>
@@ -45,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="card-body">
                         <h2>Supprimer une tâche</h2>
                         <form method="POST">
-                            <input type="hidden" name="task_id" value="<?= $taskId ?>">
+                            <input type="hidden" name="task_id" value="<?= $taskNum ?>">
                             <input type="hidden" name="confirm_delete" value="1">
                             
                             <div class="mb-3">

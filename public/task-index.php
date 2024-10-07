@@ -78,7 +78,7 @@
                 ?>
 
                 <div class="row g-3">
-                <?php foreach($tasks as $taskId => $task) : ?>
+                <?php foreach($tasks as $taskNum => $task) : ?>
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card card-custom">
                         <div class="card-body">
@@ -91,12 +91,12 @@
                             <p class="card-text"><?= htmlspecialchars($task["description"]) ?></p>
                             <div class="container">
                                 <form action="task-edit.php" method="POST" class="d-inline-block">
-                                    <input type="hidden" name="task_id" value="<?=$taskId ?>">
+                                    <input type="hidden" name="task_id" value="<?=$taskNum ?>">
                                     <button class="btn btn-warning" type="submit">Modifier</button>
                                 </form>
 
                                 <form action="task-delete.php" method="POST" class="d-inline-block">
-                                    <input type="hidden" name="task_id" value="<?= $taskId?>">
+                                    <input type="hidden" name="task_id" value="<?= $taskNum?>">
                                     <button class="btn btn-danger" type="submit">Supprimer</button>
                                 </form>
                             </div>

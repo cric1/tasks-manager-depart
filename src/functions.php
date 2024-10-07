@@ -31,10 +31,11 @@ function updateTask(string $filename, int $index, array $updatedTask): void {
     
 }
 
-function deleteTask($user, $taskNum) {
+function deleteTask($user, $taskNum):void {
     $tasks = readFromFile('data/' . $user . '-tasks.json'); 
     unset($tasks[$taskNum]); 
-    return writeToFile("data/{$user}-tasks.json", $tasks);
+    writeToFile("data/{$user}-tasks.json", $tasks);
+    redirect('task-index.php');
 }
 
 function renderOptions(string $file, string $itemSelected = "") : string {
