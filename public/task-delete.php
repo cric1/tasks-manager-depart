@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                             <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
                             <a class="btn btn-primary" href="task-index.php">
+                                
                                 <span class="bi-arrow-left"></span> Annuler
                             </a>
                         </form>
