@@ -4,14 +4,11 @@
      if (!isset($_SESSION['username'])) {
         redirect('index.php');
      }
-     
      $user = $_SESSION['username'];
      $formSubmitted = false; 
-     
-     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
-         $formSubmitted = true;
-         $taskNum = $_POST['task_id'];
-
+     $taskNum = $_POST['task_id'];
+     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
+        $formSubmitted = true;
          if (isset($_POST['title']) && !empty($_POST['title'])) {
             $title = htmlspecialchars($_POST['title']);
         } else {
@@ -19,19 +16,19 @@
         }
         
         if (isset($_POST['category'])) {
-            $category = htmlspecialchars($_POST['category']);
+            $category = $_POST['category'];
         } else {
             $erreurs['category'] = "Veuillez sélectionner une catégorie.";
         }
 
         if (isset($_POST['date']) && !empty($_POST['date'])) {
-            $date = htmlspecialchars($_POST['date']);
+            $date = $_POST['date'];
         } else {
             $erreurs['date'] = "Veuillez saisir une date.";
         }
 
         if (isset($_POST['status'])) {
-            $status = htmlspecialchars($_POST['status']);
+            $status = $_POST['status'];
         } else {
             $erreurs['status'] = "Veuillez sélectionner un statut.";
         }
@@ -56,7 +53,7 @@
                 'status' => $status,
                 'description' => $description
             ];
-            
+            var_dump($_POST);
             updateTask('data/' . $user . '-tasks.json', $taskNum, $updatedTask);
         }
     }

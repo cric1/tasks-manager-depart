@@ -14,9 +14,10 @@
     $erreurs = [];
     $formSubmitted = false; 
     $title = $category = $date = $status = $description = '';
+    
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
         $formSubmitted = true;
-
+        
         if (isset($_GET['title']) && !empty($_GET['title'])) {
             $title = htmlspecialchars($_GET['title']);
         } else {
