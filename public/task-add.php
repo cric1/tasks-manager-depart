@@ -68,8 +68,8 @@
         }
     }
     
-    $categories = json_decode(file_get_contents('data/categories.json'), true);
-    $status = json_decode(file_get_contents('data/status.json'), true);
+     $categories = readFromFile('data/categories.json');
+     $status = readFromFile('data/status.json');
     ?>
 
     <?php $titre = "Ajouter une tâche" ?>

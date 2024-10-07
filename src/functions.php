@@ -42,7 +42,7 @@ function addTask(string $user, array $newTask): void {
 
 function updateTask(string $filename, int $index, array $updatedTask): void {
     $tasks = readFromFile($filename);
-    //...
+    
     $tasks[$index] = $updatedTask;
     writeToFile($filename, $updatedTask);
 }
