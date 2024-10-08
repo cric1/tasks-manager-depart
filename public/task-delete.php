@@ -1,19 +1,29 @@
 <?php
 require '../src/functions.php';
-session_start();
-if (!isset($_SESSION['username'])) {
-    redirect('index.php');
+
+ 
+if (isset($_POST['user'])) {
+    $user = htmlspecialchars($_POST['user']); 
+} elseif (isset($_GET['user'])) {
+    $user = htmlspecialchars($_GET['user']);
 }
-$user = $_SESSION['username'];
+else {
+    redirect('index.php');
+    exit();
+}
+
 $taskNum = $_POST['task_id'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
         deleteTask($user, $taskNum);
+        redirect('task-index.php?user=' . $user);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php require "../views/head.php"; 
  $task = readFromFile('data/' . $user . '-tasks.json')[$taskNum];
+
 ?>
 
 <body>
@@ -28,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
                         <form method="POST">
                             <input type="hidden" name="task_id" value="<?= $taskNum ?>">
                             <input type="hidden" name="confirm_delete" value="1">
+                            <input type="hidden" name="user" value="<?= $user ?>">
+
                             
                             <div class="mb-3">
                                 <label for="title" class="form-label">Titre</label>
@@ -60,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
                             </div>
 
                             <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
-                            <a class="btn btn-primary" href="task-index.php">
+                            <a class="btn btn-primary" href="task-index.php?user=<?= urlencode($user); ?>">
                                 
                                 <span class="bi-arrow-left"></span> Annuler
                             </a>

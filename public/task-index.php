@@ -3,11 +3,24 @@
 <?php require '../src/functions.php'?>
 <?php require "../views/head.php"?>  
 <?php 
-    session_start();
-    if (!isset($_SESSION['username'])) {
+ if (isset($_POST['user'])) {
+    $user = htmlspecialchars($_POST['user']); 
+    
+
+
+
+
+} elseif (isset($_GET['user'])) {
+    $user = htmlspecialchars($_GET['user']);
+}
+else {
     redirect('index.php');
-    }
-    $user = $_SESSION['username'];?>
+    exit();
+}
+// Charger les tâches de l'utilisateur
+$tasks = readFromFile("data/" . $user . "-tasks.json");
+
+?>
 
 <body>
     <?php require "../views/header.php"?>  
@@ -83,10 +96,11 @@
                 ?>
 
                 <!-- TODO : Ajouter une tâche -->
-                <form action="task-add.php" method="GET" class="mb-2">
+                <form action="task-add.php" method="POST" class="mb-2">
                     <button class="btn btn-success" type="submit">Ajouter une tâche</button>
+                    <input type="hidden" name="user" value="<?= $user?>">
                 </form>
-            
+                
                 <div class="row g-3">
                     <?php foreach($tasks as $taskNum => $task) : ?>
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
@@ -113,11 +127,13 @@
                                 <div class="container">
                                     <form action="task-edit.php" method="POST" class="d-inline-block">
                                         <input type="hidden" name="task_id" value="<?=$taskNum?>">
+                                        <input type="hidden" name="user" value="<?=$user?>">
                                         <button class="btn btn-warning" type="submit">Modifier</button>
                                     </form>
 
                                     <form action="task-delete.php" method="POST" class="d-inline-block">
                                         <input type="hidden" name="task_id" value="<?= $taskNum?>">
+                                        <input type="hidden" name="user" value="<?= $user?>">
                                         <button class="btn btn-danger" type="submit">Supprimer</button>
                                     </form>
                                 </div>

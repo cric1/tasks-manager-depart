@@ -9,6 +9,7 @@
                 <div class="card-body">
                     <h2> <?= $titre ?> </h2>
                     <form method="GET">
+                        <input type="hidden" name="user" value="<?= $user ?>">
                         <!-- Champ Titre -->
                         <div class="mb-3">
                             <label for="title" class="form-label">Titre</label>
@@ -66,7 +67,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-success"> <?= $nomBtn ?></button>
-                        <a class="btn btn-primary" href="task-index.php"><span class="bi-arrow-left"></span> Annuler</a>
+                        <a class="btn btn-primary" href="task-index.php?user=<?= $user ?>"><span class="bi-arrow-left"></span> Annuler</a>
                     </form>
                 </div>
             </div>

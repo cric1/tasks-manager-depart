@@ -1,9 +1,16 @@
  <?php require '../src/functions.php';
-        session_start();
-        if (!isset($_SESSION['username'])) {
-            redirect('index.php');
-        }
-        $user = $_SESSION['username'];
+
+
+      if (isset($_POST['user'])) {
+        $user = htmlspecialchars($_POST['user']); 
+    } elseif (isset($_GET['user'])) {
+        $user = htmlspecialchars($_GET['user']);
+    }
+    else {
+        redirect('index.php');
+        exit();
+    } 
+
         $taskNum = $_POST['task_id'];
      if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
 
@@ -46,7 +53,8 @@
                 'description' => $description
             ];
            
-            updateTask('data/' . $_SESSION['username'] . '-tasks.json', $taskNum, $updatedTask);
+            updateTask('data/' . $user . '-tasks.json', $taskNum, $updatedTask);
+            redirect('task-index.php?user=' . $user);
         }
     }
     
@@ -72,6 +80,7 @@
                         <!-- Champ Titre -->
                         <input type="hidden" name="task_id" value="<?= $taskNum ?>">
                         <input type="hidden" name="confirm_delete" value="1">
+                        <input type="hidden" name="user" value="<?= $user ?>">
                         <div class="mb-3">
                             <label for="title" class="form-label">Titre</label>
                             <input type="text" class="form-control" id="title" name="title" value="<?= $task['title'] ?>">
@@ -127,8 +136,8 @@
                         </div>
 
                         <button type="submit" class="btn btn-warning"> Modifier </button>
-                        <a class="btn btn-primary" href="task-index.php"><span class="bi-arrow-left"></span> Annuler</a>
-                    </form>
+                        <a class="btn btn-primary" href="task-index.php?user=<?= urlencode($user); ?>"><span class="bi-arrow-left"></span> Annuler</a>
+                        </form>
                 </div>
             </div>
         </div>

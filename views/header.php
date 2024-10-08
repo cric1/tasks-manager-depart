@@ -6,6 +6,6 @@
         <h1 class="header-title mb-0">
             <i class="fa-solid fa-list-check"></i> Gestionnaire de Tâches
         </h1>
-        <a href="../src/deco.php" class="btn btn-outline-light mb-0">Déconnexion</a>
+        <a href="../public/index.php" class="btn btn-outline-light mb-0">Déconnexion</a>
     </div>
 </header>

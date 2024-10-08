@@ -12,17 +12,19 @@ function writeToFile(string $filename, array $data): void {
 }
 function addTask(string $user, array $newTask): void {
     $filename = 'data/' . $user . '-tasks.json';
-    writeToFile($filename, readFromFile($filename) );
+    $tasks = readFromFile($filename);
+    $tasks[] = $newTask;
+    writeToFile($filename, $tasks);
 }
 function updateTask(string $filename, int $index, array $updatedTask): void {
     $tasks = readFromFile($filename);
     $tasks[$index] = $updatedTask;
     writeToFile($filename, $tasks);
-    redirect('task-index.php');
+ 
 }
 function deleteTask($user, $taskNum):void {
+    trim($user);
     $tasks = readFromFile('data/' . $user . '-tasks.json'); 
     unset($tasks[$taskNum]); 
     writeToFile("data/{$user}-tasks.json", $tasks);
-    redirect('task-index.php');
 }
