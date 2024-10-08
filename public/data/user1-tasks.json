@@ -17,8 +17,8 @@
         "title": "Organiser une soir\u00e9e",
         "category": "Personnel",
         "date": "2024-07-21",
-        "description": "Inviter des amis pour une soir\u00e9e",
-        "status": "Termin\u00e9"
+        "status": "Termin\u00e9",
+        "description": "Inviter des amis pour une soir\u00e9"
     },
     "13": {
         "title": "Peindre la chambre",
@@ -26,26 +26,5 @@
         "date": "2024-07-22",
         "description": "Repeindre les murs de la chambre",
         "status": "Termin\u00e9"
-    },
-    "14": {
-        "title": "Finir le tp1 calis",
-        "category": "Travail",
-        "date": "2024-10-05",
-        "status": "En Cours",
-        "description": "a"
-    },
-    "15": {
-        "title": "gros test big",
-        "category": "Travail",
-        "date": "2024-10-08",
-        "status": "En Cours",
-        "description": "wa"
-    },
-    "16": {
-        "title": "ca",
-        "category": "Personnel",
-        "date": "2024-10-02",
-        "status": "Termin\u00e9",
-        "description": "jh"
     }
 }
