@@ -28,3 +28,6 @@ function deleteTask($user, $taskNum):void {
     unset($tasks[$taskNum]); 
     writeToFile("data/{$user}-tasks.json", $tasks);
 }
+function renderOptions(string $file, string $itemSelected = ""):string {
+   
+}
