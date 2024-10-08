@@ -1,45 +1,44 @@
  <?php require '../src/functions.php';
 
 
-      if (isset($_POST['user'])) {
+    if (isset($_POST['user'])) {
         $user = htmlspecialchars($_POST['user']); 
     } elseif (isset($_GET['user'])) {
         $user = htmlspecialchars($_GET['user']);
     }
     else {
         redirect('index.php');
-        exit();
     } 
 
-        $taskNum = $_POST['task_id'];
-     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
-
+    $taskNum = $_POST['task_id'];
+     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_edit'])) {
+        
          if (isset($_POST['title']) && !empty($_POST['title'])) {
-            $title = trim($_POST['title']);
+            $title = $_POST['title'];
         } else {
             $erreurs['title'] = "Veuillez saisir un titre.";
         }
         
         if (isset($_POST['category'])) {
-            $category = trim($_POST['category']);
+            $category = $_POST['category'];
         } else {
             $erreurs['category'] = "Veuillez sélectionner une catégorie.";
         }
 
         if (isset($_POST['date']) && !empty($_POST['date'])) {
-            $date = trim($_POST['date']);
+            $date = $_POST['date'];
         } else {
             $erreurs['date'] = "Veuillez saisir une date.";
         }
 
         if (isset($_POST['status'])) {
-            $status = trim($_POST['status']);
+            $status = $_POST['status'];
         } else {
             $erreurs['status'] = "Veuillez sélectionner un statut.";
         }
 
         if (isset($_POST['description']) && !empty($_POST['description'])) {
-            $description = trim($_POST['description']);
+            $description = $_POST['description'];
         } else {
             $erreurs['description'] = "Veuillez saisir une description.";
         }
@@ -52,24 +51,21 @@
                 'status' => $status,
                 'description' => $description
             ];
-           
             updateTask('data/' . $user . '-tasks.json', $taskNum, $updatedTask);
             redirect('task-index.php?user=' . $user);
         }
     }
-    
      $categories = readFromFile('data/categories.json');
      $status = readFromFile('data/status.json');
+     $task = readFromFile('data/' . $user . '-tasks.json')[$taskNum];
     ?>
      
 <!DOCTYPE html>
 <html lang="fr">
-<?php require "../views/head.php"; 
-     $task = readFromFile('data/' . $user . '-tasks.json')[$taskNum]; ?>
-
+<?php require "../views/head.php"?>
+     
  <body>
-     <?php require "../views/header.php"; ?>
-
+     <?php require "../views/header.php" ?>
      <div class="container mt-4">
       <div class="row justify-content-center">
         <div class="col-md-6">
@@ -79,7 +75,7 @@
                     <form method="POST">
                         <!-- Champ Titre -->
                         <input type="hidden" name="task_id" value="<?= $taskNum ?>">
-                        <input type="hidden" name="confirm_delete" value="1">
+                        <input type="hidden" name="confirm_edit" value="1">
                         <input type="hidden" name="user" value="<?= $user ?>">
                         <div class="mb-3">
                             <label for="title" class="form-label">Titre</label>
@@ -93,7 +89,7 @@
                         <div class="mb-3">
                             <label for="category" class="form-label">Catégorie</label>
                             <select id="category" name="category" class="form-select">
-                                <option hidden value=" <?= $task['category'] ?> "> <?= $task['category'] ?> </option>
+                                <option hidden value="<?= $task['category'] ?>"><?= $task['category'] ?></option>
                                     <?php foreach ($categories as $cat): ?>
                                         <option value="<?= $cat['name'] ?>"><?= $cat['name'] ?></option>
                                     <?php endforeach; ?>
@@ -116,7 +112,7 @@
                         <div class="mb-3">
                             <label for="status" class="form-label">Statut</label>
                             <select id="status" name="status" class="form-select">
-                                <option hidden value=" <?= $task['status'] ?> "> <?= $task['status'] ?> </option> 
+                                <option hidden value="<?= $task['status'] ?>"><?= $task['status'] ?></option> 
                                     <?php foreach ($status as $stat): ?>
                                         <option value="<?= $stat['name'] ?>"><?= $stat['name']?></option>
                                     <?php endforeach; ?>
@@ -129,7 +125,7 @@
                         <!-- Champ Description -->
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"><?= $task['description'] ?> </textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3"><?= $task['description'] ?></textarea>
                                 <?php if (isset($erreurs['description'])): ?>
                                     <div class="text-danger"><?= $erreurs['description'] ?></div>
                                 <?php endif; ?>

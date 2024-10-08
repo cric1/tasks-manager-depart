@@ -9,7 +9,6 @@ if (isset($_POST['user'])) {
 }
 else {
     redirect('index.php');
-    exit();
 }
 
 $taskNum = $_POST['task_id'];
@@ -17,18 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
         deleteTask($user, $taskNum);
         redirect('task-index.php?user=' . $user);
 }
-
+$task = readFromFile('data/' . $user . '-tasks.json')[$taskNum];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php require "../views/head.php"; 
- $task = readFromFile('data/' . $user . '-tasks.json')[$taskNum];
-
-?>
-
+<?php require "../views/head.php"?>
 <body>
     <?php require "../views/header.php"; ?>
-
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -40,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
                             <input type="hidden" name="confirm_delete" value="1">
                             <input type="hidden" name="user" value="<?= $user ?>">
 
-                            
                             <div class="mb-3">
                                 <label for="title" class="form-label">Titre</label>
                                 <input disabled type="text" class="form-control" id="title" 
@@ -72,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
                             </div>
 
                             <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
-                            <a class="btn btn-primary" href="task-index.php?user=<?= urlencode($user); ?>">
+                            <a class="btn btn-primary" href="task-index.php?user=<?= urlencode($user) ?>">
                                 
                                 <span class="bi-arrow-left"></span> Annuler
                             </a>

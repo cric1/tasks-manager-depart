@@ -8,19 +8,19 @@
     <?php require '../src/functions.php';
  
  if (isset($_POST['user'])) {
-    $user = htmlspecialchars($_POST['user']); 
+    $user = htmlspecialchars(string: $_POST['user']); 
 } elseif (isset($_GET['user'])) {
     $user = htmlspecialchars($_GET['user']);
 }
 else {
     redirect('index.php');
-    exit();
 }
 
     $erreurs = [];
     $title = $category = $date = $status = $description = '';
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
+
         if (isset($_GET['title']) && !empty($_GET['title'])) {
             $title = $_GET['title'];
         } else {

@@ -53,11 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
             }
         }
-
         if ($userExists) {
-            
             redirect('task-index.php?user=' . urlencode($username)); 
-            exit();
         } else {
             echo "<div class='alert alert-danger'>Nom d'utilisateur incorrect</div>";
         }

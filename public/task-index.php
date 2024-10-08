@@ -11,11 +11,8 @@
 }
 else {
     redirect('index.php');
-    exit();
 }
-
 $tasks = readFromFile("data/" . $user . "-tasks.json");
-
 ?>
 
 <body>
@@ -23,7 +20,7 @@ $tasks = readFromFile("data/" . $user . "-tasks.json");
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">        
-                <!-- TODO : Filtre -->
+                <!-- Filtre -->
                 <form action="task-index.php" method="POST" class="mb-4"> 
                 <input type="hidden" name="user" value="<?= $user ?>">
                     <div class="row">
@@ -92,7 +89,7 @@ $tasks = readFromFile("data/" . $user . "-tasks.json");
                     
                 ?>
 
-                <!-- TODO : Ajouter une tâche -->
+                <!-- Ajouter une tâche -->
                 <form action="task-add.php" method="POST" class="mb-2">
                     <button class="btn btn-success" type="submit">Ajouter une tâche</button>
                     <input type="hidden" name="user" value="<?= $user?>">
