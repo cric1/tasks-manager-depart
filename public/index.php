@@ -39,6 +39,12 @@
 
 <?php 
 
+$username = "";
+if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $taskFile = $_GET['task_file'];
+    $taskFile = readFromFile("data/user.json");
+}
+
 require '../src/functions.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
