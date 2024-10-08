@@ -13,10 +13,11 @@
     //voici les sources que jai utilise pour comprendre comment fonctionne les sessions
     //https://www.php.net/manual/en/function.session-start.php
     //https://www.w3schools.com/php/php_sessions.asp
-    session_start();  
-    if (isset($_SESSION['username'])) {
-        redirect('index.php');
-    }  
+     session_start();
+        if (!isset($_SESSION['username'])) {
+            redirect('index.php');
+        }
+        
     $erreurs = [];
     $title = $category = $date = $status = $description = '';
 

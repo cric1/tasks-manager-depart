@@ -83,10 +83,10 @@
                 ?>
 
                 <!-- TODO : Ajouter une tâche -->
-                <form action="task-add.php" method="POST" class="mb-2">
+                <form action="task-add.php" method="GET" class="mb-2">
                     <button class="btn btn-success" type="submit">Ajouter une tâche</button>
                 </form>
-                
+            
                 <div class="row g-3">
                     <?php foreach($tasks as $taskNum => $task) : ?>
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
