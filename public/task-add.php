@@ -7,9 +7,12 @@
     <?php require "../views/header.php"; ?>
     <?php require '../src/functions.php';
     
-    //message au prof: j'ai ajouté session_start() ici pour que la variable de session et donc username soit accessible dans tout les fichiers.
-    //je pense pas quon a vu ca en classe mais je ne trouve pas une autre solution
-    
+   //message au prof: j'ai utilise session_start() ici pour que la variable de session et donc username soit accessible dans tout les fichiers.
+    //je pense pas quon a vu ca en classe mais je ne trouve pas une meilleure solution pour le moment
+    //je trouve que c'est plus simple de faire cela que de passer la variable dans un get
+    //voici les sources que jai utilise pour comprendre comment fonctionne les sessions
+    //https://www.php.net/manual/en/function.session-start.php
+    //https://www.w3schools.com/php/php_sessions.asp
     session_start();  
     if (isset($_SESSION['username'])) {
         redirect('index.php');
