@@ -5,10 +5,6 @@
 <?php 
  if (isset($_POST['user'])) {
     $user = htmlspecialchars($_POST['user']); 
-    
-
-
-
 
 } elseif (isset($_GET['user'])) {
     $user = htmlspecialchars($_GET['user']);
@@ -29,6 +25,7 @@ $tasks = readFromFile("data/" . $user . "-tasks.json");
             <div class="col-md-12">        
                 <!-- TODO : Filtre -->
                 <form action="task-index.php" method="POST" class="mb-4"> 
+                <input type="hidden" name="user" value="<?= $user ?>">
                     <div class="row">
                         <div class="col-md-3">
                             <!-- Catégorie -->
