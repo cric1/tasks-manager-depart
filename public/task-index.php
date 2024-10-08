@@ -13,7 +13,7 @@ else {
     redirect('index.php');
     exit();
 }
-// Charger les tâches de l'utilisateur
+
 $tasks = readFromFile("data/" . $user . "-tasks.json");
 
 ?>
